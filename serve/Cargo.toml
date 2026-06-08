@@ -1,0 +1,19 @@
+[package]
+name = "DiskANN3-REST"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+diskann            = { git = "https://github.com/microsoft/DiskANN", branch = "main" }
+diskann-disk       = { git = "https://github.com/microsoft/DiskANN", branch = "main" }
+diskann-providers  = { git = "https://github.com/microsoft/DiskANN", branch = "main" }
+diskann-vector     = { git = "https://github.com/microsoft/DiskANN", branch = "main" }
+ 
+anyhow            = "1"
+serde             = { version = "1", features = ["derive"] }
+serde_json        = "1"
+bytemuck          = "1.23"   # match DiskANN3's bytemuck (1.x) so `Pod` is the same trait
+tiny_http         = "0.12"   # synchronous HTTP server (no async runtime to conflict with search)
+crossbeam-channel = "0.5"    # bounded MPMC queue for backpressure (503 when full)
+
+
