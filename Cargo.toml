@@ -1,0 +1,11 @@
+[workspace]
+resolver = "2"
+members = ["serve", "client"]
+
+# Two crates, one project:
+#   serve/   the DiskANN3 REST server   (heavy: diskann*, tiny_http; needs Rust 1.92)
+#   client/  the HTTP query client      (light: ureq only; builds on stable)
+#
+# Each member keeps its own [dependencies], so the client does NOT inherit the
+# DiskANN dependency tree. `cargo build` at the root builds both; or target one
+# with `cargo build -p diskann3-serve` / `-p diskann3-client`.
