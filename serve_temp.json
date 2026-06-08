@@ -1,0 +1,11 @@
+{
+  "load_path": "sample_index_l50_r32",
+  "data_type": "Float32",
+  "distance": "SquaredL2",
+  "addr": "0.0.0.0:8080",
+  "workers": 8,
+  "queue_capacity": 256,
+  "num_nodes_to_cache": null,
+  "search_io_limit": null,
+  "defaults": { "k": 10, "search_list": 100, "beam_width": 4, "flat": false }
+}
