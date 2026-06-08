@@ -1,0 +1,15 @@
+[package]
+name = "DiskANN3-REST-client"
+version = "0.1.0"
+edition = "2021"
+
+# A standalone HTTP client for the diskann3-serve REST API. It deliberately has
+# NO DiskANN dependency: it reads the .fbin query file itself and only speaks
+# HTTP + JSON, so it builds on stable Rust in seconds and runs anywhere.
+[dependencies]
+anyhow     = "1"
+serde      = { version = "1", features = ["derive"] }
+serde_json = "1"
+# default-features off drops rustls/ring (no TLS) for a fast build over plain http.
+# Add "rustls" to features if you need to talk to an https endpoint.
+ureq = { version = "3", default-features = false, features = ["json"] }
