@@ -168,16 +168,6 @@ fn search_one(searcher: &Searcher<f32>, query: &[f32], p: &Params) -> Result<Sea
         .search(query, p.k, p.l, Some(p.beam), None, p.flat)
         .map_err(|e| anyhow::anyhow!("{e}"))?;
     let search_ms = t.elapsed().as_secs_f64() * 1000.0;
-    println!(
-        "search: k={}, search_list={}, beam={}, flat={} -> {} neighbors, {} cmps, {:.2} ms",
-        p.k,
-        p.l,
-        p.beam,
-        p.flat,
-        res.results.len(),
-        res.stats.cmps,
-        search_ms
-    );
     Ok(SearchResponse {
         neighbors: res
             .results
