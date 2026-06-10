@@ -54,6 +54,7 @@ struct Neighbor {
 struct SearchResponse {
     neighbors: Vec<Neighbor>,
     comparisons: u32,
+    search_ms: f64,
 }
 #[derive(Deserialize)]
 struct BatchResponse {
@@ -294,11 +295,13 @@ fn main() -> Result<()> {
                                     let ids: Vec<u32> =
                                         resp.neighbors.iter().take(5).map(|nb| nb.id).collect();
                                     println!(
-                                        "query {i}: top {:?}{} ({} cmps, {:.2} ms)",
+                                        "query {i}: top {:?}{} ({} cmps, search {:.2} ms, rest {:.2} ms, total {:.2} ms)",
                                         ids,
                                         if resp.neighbors.len() > 5 { " ..." } else { "" },
                                         resp.comparisons,
-                                        ms
+                                        resp.search_ms,
+                                        ms - resp.search_ms,
+                                        ms,
                                     );
                                 }
                             }
